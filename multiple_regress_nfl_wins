@@ -1,0 +1,131 @@
+# import Libaries
+import pandas as pd
+
+#reading the file nfl_project2.csv 
+nfl_data_df = pd.read_csv('nfl_project2.csv')
+#printing the head of full database
+nfl_data_df.head()
+
+# Scatterplot of  of_yds_per_g  vs wins
+import matplotlib.pyplot as plt
+import scipy.stats as st
+
+# create scatterplot of variables tempc against sales
+plt.plot(nfl_data_df["of_yds_per_g"], nfl_data_df["wins"], 'o', color='red')
+
+# set a title for the plot, x-axis and y-axis
+plt.title('Offensive Yards Per Game vs Wins ')
+plt.xlabel('Offensive Yards Per Game')
+plt.ylabel('Number of Wins')
+
+# show the plot
+plt.show()
+
+# Calculate the correlation coefficient and -p-value 
+correlation_coefficient, p_value = st.pearsonr(nfl_data_df['of_yds_per_g'], nfl_data_df['wins'])
+
+print("Correlation between Offensive Years scored and the Total Number of Wins ")
+print("Pearson Correlation Coefficient =",  round(correlation_coefficient,4))
+print("P-value =", round(p_value,4))
+
+# Scatterplot of  df_yds_per_g  vs wins  AND Correlation Results.
+## ----- Write code here -----
+
+# create scatterplot of variables tempc against sales
+plt.plot(nfl_data_df["df_yds_per_g"], nfl_data_df["wins"], 'o', color='blue')
+
+# set a title for the plot, x-axis and y-axis
+plt.title('Defensive Yards Per Game vs Wins ')
+plt.xlabel('Defensive Yards Per Game Allowed')
+plt.ylabel('Number of Wins')
+
+# show the plot
+plt.show()
+
+# Calculate the correlation coefficient and -p-value 
+correlation_coefficient, p_value = st.pearsonr(nfl_data_df['df_yds_per_g'], nfl_data_df['wins'])
+
+# create scatterplot of variables tempc against sales
+plt.plot(nfl_data_df["df_pts_per_g"], nfl_data_df["wins"], 'o', color='Black')
+
+# set a title for the plot, x-axis and y-axis
+plt.title('Defensive Points Per Game vs Wins ')
+plt.xlabel('Defensive Points Per Game Allowed')
+plt.ylabel('Number of Wins')
+
+# show the plot
+plt.show()
+
+# Calculate the correlation coefficient and -p-value 
+correlation_coefficient, p_value = st.pearsonr(nfl_data_df['df_pts_per_g'], nfl_data_df['wins'])
+
+print("Correlation between Offensive Years scored and the Total Number of Wins ")
+print("Pearson Correlation Coefficient =",  round(correlation_coefficient,4))
+print("P-value =", round(p_value,4))
+print("Correlation between Offensive Years scored and the Total Number of Wins ")
+print("Pearson Correlation Coefficient =",  round(correlation_coefficient,4))
+print("P-value =", round(p_value,4))
+
+# Scatterplot of  of_pts_per_g  vs wins AND Correlation Results.
+
+# create scatterplot 
+plt.plot(nfl_data_df["of_pts_per_g"], nfl_data_df["wins"], 'o', color='green')
+
+# set a title for the plot, x-axis and y-axis
+plt.title('Offensive Points Per Game vs Wins ')
+plt.xlabel('Offensive Points Per Game')
+plt.ylabel('Number of Wins')
+
+# show the plot
+plt.show()
+
+# Calculate the correlation coefficient and -p-value 
+correlation_coefficient, p_value = st.pearsonr(nfl_data_df['of_pts_per_g'], nfl_data_df['wins'])
+
+print("Correlation between Offensive Years scored and the Total Number of Wins ")
+print("Pearson Correlation Coefficient =",  round(correlation_coefficient,4))
+print("P-value =", round(p_value,4))
+
+import statsmodels.formula.api as sms
+
+
+# create the simple linear regression model with wins as the response variable and Defensive yards as the predictor variable
+
+model = sms.ols('wins ~ df_yds_per_g',nfl_data_df).fit()
+
+
+#print the model summary
+print(model.summary())
+
+import statsmodels.formula.api as smf
+
+# Multiple Regression
+# ----- Write the function to create the Regession Results for this MLR
+model2 = sms.ols('wins ~ df_yds_per_g + of_yds_per_g',nfl_data_df).fit()
+
+#print the model summary
+print(model2.summary())
+
+import statsmodels.formula.api as smf
+
+# Multiple Regression
+# ----- Write the function to create the Regession Results for this MLR
+model3 = sms.ols('wins ~ df_yds_per_g + of_yds_per_g + of_pts_per_g + df_pts_per_g',nfl_data_df).fit()
+
+
+#print the model summary
+print(model3.summary())
+
+# Calculate the correlation coefficient and -p-value 
+correlation_coefficient, p_value = st.pearsonr(nfl_data_df['df_pts_per_g'], nfl_data_df['wins'])
+
+import statsmodels.formula.api as smf
+
+# Multiple Regression
+# ----- Write the function to create the Regession Results for this MLR
+model3 = sms.ols('wins ~ of_pts_per_g + df_pts_per_g',nfl_data_df).fit()
+
+
+#print the model summary
+print(model3.summary())
+
